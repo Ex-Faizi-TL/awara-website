@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#070b13">
+<title>Ex Faizi ★ | Personal Space</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#8edfff;--silver:#e8f5ff}
+body{
+  min-height:100vh;background:#070b13;color:#f3f8ff;
+  font-family:Arial,Helvetica,sans-serif;overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:
+  radial-gradient(ellipse at 15% 15%,#123b5970,transparent 42%),
+  radial-gradient(ellipse at 85% 80%,#173c5870,transparent 40%),
+  linear-gradient(135deg,#05080e,#0b1422 55%,#05080e);
+}
+body:after{
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:radial-gradient(#bdeaff55 1px,transparent 1px);
+  background-size:42px 42px;opacity:.22;
+}
+.glow{color:var(--blue);text-shadow:0 0 12px #69d5ff90,0 0 28px #69d5ff55}
+.welcome{
+  position:fixed;inset:0;z-index:10;display:flex;align-items:center;
+  justify-content:center;text-align:center;padding:25px;
+  background:linear-gradient(145deg,#050912,#0d1b2b,#050912);
+  transition:opacity .8s,visibility .8s;
+}
+.welcome.hide{opacity:0;visibility:hidden}
+.welcome-card{max-width:520px;width:100%;animation:rise 1s ease both}
+.small-line{letter-spacing:5px;color:#9cb9cc;font-size:11px}
+.welcome h1{font-size:clamp(35px,9vw,62px);margin:24px 0 12px}
+.welcome p{color:#a9bdcc;letter-spacing:3px;font-size:12px}
+.enter{
+  margin-top:38px;padding:15px 48px;border-radius:40px;
+  border:1px solid #8edfff;background:#8edfff12;color:#eaf9ff;
+  letter-spacing:4px;font-weight:bold;cursor:pointer;
+  box-shadow:0 0 25px #5acaff25;transition:.3s;
+}
+.enter:hover{background:#8edfff;color:#06101a;box-shadow:0 0 35px #5acaff80}
+main{width:min(900px,92%);margin:auto;padding:55px 0 35px}
+.top{text-align:center;margin-bottom:25px}
+.top .eyebrow{font-size:10px;letter-spacing:5px;color:#8aaabd}
+.profile{
+  position:relative;text-align:center;padding:35px 20px 30px;
+  border:1px solid #b6e9ff24;border-radius:25px;
+  background:linear-gradient(145deg,#ffffff0c,#ffffff03);
+  box-shadow:0 20px 70px #0008,inset 0 1px #ffffff10;
+  backdrop-filter:blur(15px);
+}
+.profile:before{
+  content:"";position:absolute;inset:-1px;border-radius:25px;
+  padding:1px;background:linear-gradient(130deg,#8edfff70,transparent 35%,#8edfff20);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+}
+.avatar{
+  width:142px;height:142px;object-fit:cover;border-radius:50%;
+  border:2px solid #a8e7ff; padding:5px;
+  box-shadow:0 0 25px #69d5ff50,0 0 65px #69d5ff20;
+}
+.name{font-size:clamp(25px,6vw,38px);margin:22px 0 9px;letter-spacing:1px}
+.tag{color:#8faabb;font-size:12px;letter-spacing:3px}
+.welcome-text{margin:30px 0 8px;font-size:20px;font-weight:bold}
+.to{color:#a8bac8;letter-spacing:4px;font-size:13px;margin-bottom:18px}
+.quote{color:#c8d8e4;font-size:13px;line-height:1.8}
+.bio{
+  margin:28px auto 0;padding:19px 12px;max-width:540px;
+  border:1px solid #8edfff40;border-radius:17px;
+  background:#071421aa;box-shadow:0 0 30px #54caff12;
+}
+.bio-label{font-size:9px;letter-spacing:4px;color:#83cce9;margin-bottom:15px}
+.bio-art{
+  overflow-x:auto;text-align:center;
+}
+.bio-art pre{
+  display:inline-block;text-align:left;white-space:pre;
+  font-family:monospace;font-size:clamp(9px,2.5vw,13px);
+  line-height:2;color:#e8f7ff;text-shadow:0 0 10px #7bdcff55;
+}
+.section-title{text-align:center;margin:42px 0 18px}
+.section-title span{font-size:10px;letter-spacing:5px;color:#8eb5ca}
+.socials{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.social{
+  text-decoration:none;color:#eaf6ff;text-align:center;padding:20px 8px;
+  border:1px solid #a7dfff30;border-radius:17px;
+  background:linear-gradient(145deg,#ffffff0c,#ffffff04);
+  transition:.25s;display:block;
+}
+.social:hover{transform:translateY(-5px);border-color:#8edfff;box-shadow:0 10px 30px #5acaff20}
+.social .symbol{font-size:24px;display:block;margin-bottom:12px;color:#9fe4ff}
+.social b{font-size:12px;letter-spacing:1px}
+.social small{display:block;color:#8ba7b9;font-size:10px;margin-top:7px}
+.footer{text-align:center;color:#718b9c;font-size:10px;letter-spacing:3px;margin:38px 0 10px}
+@keyframes rise{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:520px){
+  main{padding-top:30px}
+  .profile{padding:28px 12px}
+  .socials{gap:8px}
+  .social{padding:17px 4px}
+  .social b{font-size:10px}
+}
+</style>
+</head>
+
+<body>
+
+<section class="welcome" id="welcome">
+  <div class="welcome-card">
+    <div class="small-line">A PERSONAL SPACE</div>
+    <h1 class="glow">Ex Faizi ★</h1>
+    <p>WELCOME TO MY WORLD</p>
+    <button class="enter" onclick="enterSite()">ENTER</button>
+  </div>
+</section>
+
+<main>
+  <div class="top">
+    <div class="eyebrow">✦ &nbsp; PERSONAL PORTFOLIO &nbsp; ✦</div>
+  </div>
+
+  <section class="profile">
+    <img class="avatar" src="assets/profile.jpg" alt="Ex Faizi profile picture">
+
+    <h1 class="name glow">ExㅤFaiziㅤ★</h1>
+    <div class="tag">A WORLD OF MY OWN</div>
+
+    <div class="welcome-text">𝗛𝗲𝘆,𝗪𝗲𝗹𝗰𝗼𝗺𝗲!</div>
+    <div class="to">ㅤㅤㅤㅤTo</div>
+    <p class="quote">A little piece of Kashmir, a world of my own.</p>
+
+    <div class="bio">
+      <div class="bio-label">✦ &nbsp;MY BIO &nbsp; ✦</div>
+      <div class="bio-art">
+<pre>  • کشمیر کی جلتی وادی میں بہتے لہو کا شور سنو…🫀
+میں وادی ہوں شہیدوں کی مجھے کشمیر کہتے ہیں 🍁🙌🏻
+ㅤㅤㅤㅤㅤㅤ~Aʟʜᴀᴍᴅᴜʟɪʟᴀʜ 💫
+ㅤㅤㅤㅤㅤ~کشمیری🍁🫀</pre>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-title"><span>✦ &nbsp; CONNECT WITH ME &nbsp; ✦</span></div>
+
+  <section class="socials">
+    <a class="social" href="https://www.instagram.com/ex_awara?bqrl=MTZ2YTJtajdpdzZtOA==" target="_blank" rel="noopener noreferrer">
+      <span class="symbol">◎</span><b>INSTAGRAM</b><small>Visit my profile ↗</small>
+    </a>
+
+    <a class="social" href="https://www.snapchat.com/add/no7.sufii?share_id=E94gZr1t3pk&locale=en-GB" target="_blank" rel="noopener noreferrer">
+      <span class="symbol">◉</span><b>SNAPCHAT</b><small>Find me here ↗</small>
+    </a>
+
+    <a class="social" href="https://www.tiktok.com/@ex_faizi" target="_blank" rel="noopener noreferrer">
+      <span class="symbol">♪</span><b>TIKTOK</b><small>Watch my videos ↗</small>
+    </a>
+  </section>
+
+  <div class="footer">MADE WITH ✦ &nbsp; EX FAIZI</div>
+</main>
+
+<script>
+function enterSite(){
+  document.getElementById("welcome").classList.add("hide");
+}
+</script>
+
+</body>
+</html>
